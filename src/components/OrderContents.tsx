@@ -1,7 +1,8 @@
+import { formatearPrecio } from "../helpers";
 import type { pedidoItem } from "../types";
 
 type OrderContentsProps = {
-  pedido: pedidoItem[]; // <-- Esto es para decirle a OrderContentsProps que la prop pedido es un array de tipo pedidoItem, esto es para que cuando se use el componente OrderContents en App.tsx se le pueda pasar el pedido como prop y se pueda mostrar el contenido del pedido en el componente OrderContents, esto se hace para que el componente OrderContents sea un componente que muestre el contenido del pedido, es decir, los items que se han agregado al pedido y la cantidad de cada item en el pedido
+  pedido: pedidoItem[];
 };
 
 export default function OrderContents({ pedido }: OrderContentsProps) {
@@ -10,15 +11,27 @@ export default function OrderContents({ pedido }: OrderContentsProps) {
       <h2 className="font-black text-4xl">Consumo</h2>
       <div className="space-y-3 mt-5">
         {pedido.length === 0 ? (
-          <p className="text-slate-500 text-center">No hay items en el pedido</p>
+          <p className="text-red-500 text-center">No hay items en el pedido</p>
         ) : (
-            pedido.map((item) => (
-              <div key={item.id} className="flex justify-between">
-                <p>{item.name}</p>
+          pedido.map((item) => (
+            <div key={item.id} className="flex flex-col border-b pb-3 mb-2 border-t border-gray-200 py-5 last-of-type:border-b">
+              {/* Fila 1: Nombre y precio */}
+              <div className="flex justify-between items-center">
+                <p className="text-lg">
+                  {item.name} - {formatearPrecio(item.price)}
+                </p>
+                <button className="bg-red-500 text-white h-8 w-8 rounded-full font-black" >
+                  X
+                </button>
               </div>
-            ))
-        )}
 
+              {/* Fila 2: Cantidad y subtotal */}
+              <p className="font-black mt-1">
+                Cantidad: {item.cantidad} - {formatearPrecio(item.price * item.cantidad)}
+              </p>
+            </div>
+          ))
+        )}
       </div>
     </div>
   );

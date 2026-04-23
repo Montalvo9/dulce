@@ -28,7 +28,7 @@ function App() {
             ))}
           </div>
         </div>
-        <div className="border border-dashed border-slate-300 rounded-lg p-5">
+        <div className="border border-dashed border-slate-300 rounded-lg p-5 space-y-10">
          <OrderContents
          pedido = {pedido}
          
