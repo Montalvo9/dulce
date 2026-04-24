@@ -1,11 +1,13 @@
 import { formatearPrecio } from "../helpers";
-import type { pedidoItem } from "../types";
+import type { menuItem, pedidoItem } from "../types";
 
 type OrderContentsProps = {
-  pedido: pedidoItem[];
+  pedido: pedidoItem[],
+  removeItem: (id: menuItem['id']) => void
+  
 };
 
-export default function OrderContents({ pedido }: OrderContentsProps) {
+export default function OrderContents({ pedido, removeItem }: OrderContentsProps) {
   return (
     <div>
       <h2 className="font-black text-4xl">Consumo</h2>
@@ -20,7 +22,8 @@ export default function OrderContents({ pedido }: OrderContentsProps) {
                 <p className="text-lg">
                   {item.name} - {formatearPrecio(item.price)}
                 </p>
-                <button className="bg-red-500 text-white h-8 w-8 rounded-full font-black" >
+                <button className="bg-red-500 text-white h-8 w-8 rounded-full font-black"
+                onClick={() => removeItem(item.id)} >
                   X
                 </button>
               </div>

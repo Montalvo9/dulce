@@ -5,7 +5,7 @@ import usePedido from "./hooks/usePedido";
 
 
 function App() {
-  const { pedido,addItem } = usePedido() // <-- Esto es para usar la función de agregar item al pedido que creamos en el hook usePedido.ts, esta función se va a usar en el componente MenuItem.tsx para agregar un item al pedido cuando se haga click en el botón del item del menú
+  const { pedido,addItem, removeItem } = usePedido() // <-- Esto es para usar la función de agregar item al pedido que creamos en el hook usePedido.ts, esta función se va a usar en el componente MenuItem.tsx para agregar un item al pedido cuando se haga click en el botón del item del menú
   return (
     <>
       <header className="bg-pink-500 py-5">
@@ -31,6 +31,7 @@ function App() {
         <div className="border border-dashed border-slate-300 rounded-lg p-5 space-y-10">
          <OrderContents
          pedido = {pedido}
+         removeItem = {removeItem}
          
          /> 
           

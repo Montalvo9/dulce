@@ -25,10 +25,16 @@ export default function usePedido() {
       const newItem = { ...item, cantidad: 1 }; // <-- Esto es para crear un nuevo item que tenga toda la información del item del menú pero con una propiedad adicional que es la cantidad, esta cantidad se inicializa en 1 porque cuando se agrega un item al pedido se asume que se está agregando una unidad de ese item
       setPedido([...pedido, newItem]);
     }
+  }
+
+  /**Funcion  */
+  const removeItem = (id: menuItem['id']) => {
+    setPedido(pedido.filter((pedidoItem) => pedidoItem.id !== id)) //mantén solo los items cuyo id sea DIFERENTE al id que quiero 
   };
 
   return {
     pedido,
     addItem,
+    removeItem
   };
 }
